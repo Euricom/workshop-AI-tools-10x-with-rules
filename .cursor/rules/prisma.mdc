@@ -1,0 +1,17 @@
+---
+description: How to use Prisma
+globs: 
+alwaysApply: false
+---
+
+# Prisma Usage
+
+We use SQLite.
+
+This is how we import db (prisma instance) in the project:
+
+```typescript
+import { db } from "@/server/db";
+```
+
+The prisma file is located at: `prisma/schema.prisma`.
