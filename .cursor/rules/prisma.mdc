@@ -1,6 +1,6 @@
 ---
 description: How to use Prisma
-globs: 
+globs:
 alwaysApply: false
 ---
 
@@ -15,3 +15,30 @@ import { db } from "@/server/db";
 ```
 
 The prisma file is located at: `prisma/schema.prisma`.
+
+## Seeds
+
+When asked, add seed files in `prisma/seeds` folder
+
+```code
+prisma/seeds/
+├── users.ts
+├── products.ts
+```
+
+Add seed to prisma config in package.json
+
+```json
+"prisma": {
+  "seed": "tsx prisma/seeds/users.ts && tsx prisma/seeds/products.ts"
+},
+```
+
+Add a script to run the seed when not available
+
+```json
+"scripts": {
+  "db:seed": "prisma db seed",
+}
+```
+

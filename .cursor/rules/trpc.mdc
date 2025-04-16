@@ -68,6 +68,8 @@ export const protectedProcedure = t.procedure.use(enforceUserIsAuthed);
      }),
    ```
 
+All routes should be protected, unless other noted
+
 ## Input Validation
 
 Always use Zod schemas for input validation:
@@ -124,8 +126,8 @@ Always use Zod schemas for input validation:
    ```typescript
    .query(async ({ input }) => {
      return prisma.post.findMany({
-       take: input.limit,
-       skip: input.offset,
+       take: input.pageSize,
+       skip: input.pageSize * input.page,
        select: {
          id: true,
          title: true,
@@ -162,8 +164,8 @@ Always use Zod schemas for input validation:
 1. **Pagination**
    ```typescript
    .input(z.object({
-     limit: z.number().min(1).max(100).default(10),
-     cursor: z.string().optional(),
+     pageSize: z.number().min(5).max(500).default(50),
+     page: z.number(),
    }))
    ```
 
